@@ -45,6 +45,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "haml"
+gem "haml-rails"
 
 gem "postgresql"
 
@@ -52,6 +53,8 @@ gem 'bootstrap', '~> 5.3.3'
 gem "jquery-rails"
 gem 'sassc-rails'
 gem "popper_js"
+
+gem "devise"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

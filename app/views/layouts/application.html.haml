@@ -12,7 +12,14 @@
     -# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
+  
     = render 'layouts/navbar'
-    = yield
+    .container.mt-5
+      - flash.each do |key, value|
+        -alert_type = key == "notice" ? "success" : key == "alert" ? "danger" : "key"
+        .alert.alert-dismissible{class: "alert-#{alert_type}"}
+          %button.btn-close{"data-bs-dismiss" => "alert", type: "button"}
+          %p.mb-0= value
+      = yield
 
   
