@@ -1,0 +1,12 @@
+.container
+  .row.justify-content-center
+    .col-md-6
+      %h2.text-center.mb-4 Forgot your password?
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f|
+        = render "users/shared/error_messages", resource: resource
+        .form-group.mb-3
+          = f.label :email, class: 'control-label'
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+        .form-group
+          = f.submit "Send me reset password instructions", class: 'btn btn-primary btn-block'
+      = render "users/shared/links"

@@ -1,0 +1,19 @@
+.container
+  .row.justify-content-center
+    .col-md-6
+      %h2.text-center.mb-4 Change your password
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+        = render "users/shared/error_messages", resource: resource
+        = f.hidden_field :reset_password_token
+        .form-group.mb-3
+          = f.label :password, "New password", class: 'control-label'
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+          = f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control'
+        .form-group.mb-3
+          = f.label :password_confirmation, "Confirm new password", class: 'control-label'
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+        .form-group
+          = f.submit "Change my password", class: 'btn btn-primary btn-block'
+      = render "users/shared/links"
