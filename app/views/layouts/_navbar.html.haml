@@ -1,28 +1,40 @@
 %nav.navbar.navbar-expand-lg.bg-primary{ "data-bs-theme" => "dark" }
   .container
-    %a.navbar-brand{ href: "#" } Jacob's Website
+    %a.navbar-brand{ href: "/" } Jacob's Website
     %button.navbar-toggler{ type: "button", "data-bs-toggle" => "collapse", "data-bs-target" => "#navbarColor01", "aria-controls" => "navbarColor01", "aria-expanded" => "false", "aria-label" => "Toggle navigation" }
       %span.navbar-toggler-icon
     #navbarColor01.collapse.navbar-collapse
       %ul.navbar-nav.me-auto
         %li.nav-item
-          %a.nav-link.active{ href: "#" }
+          %a.nav-link.active{ href: "/" }
             Home
             %span.visually-hidden (current)
         %li.nav-item
-          %a.nav-link{ href: "#" } Features
+          %a.nav-link{ href: "/users" } Users
         %li.nav-item
           %a.nav-link{ href: "#" } Pricing
         %li.nav-item
           %a.nav-link{ href: "#" } About
-        %li.nav-item.dropdown
-          %a.nav-link.dropdown-toggle{ "data-bs-toggle" => "dropdown", href: "#", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false" } Dropdown
+        -# %li.nav-item.dropdown
+        -#   %a.nav-link.dropdown-toggle{ "data-bs-toggle" => "dropdown", href: "#", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false" } Dropdown
+        -#   .dropdown-menu
+        -#     %a.dropdown-item{ href: "#" } Action
+        -#     %a.dropdown-item{ href: "#" } Another action
+        -#     %a.dropdown-item{ href: "#" } Something else here
+        -#     .dropdown-divider
+        -#     %a.dropdown-item{ href: "#" } Separated link
+      -# %form.d-flex
+      -#   %input.form-control.me-sm-2{ type: "search", placeholder: "Search" }
+      -#   %button.btn.btn-secondary.my-2.my-sm-0{ type: "submit" } Search
+      - if user_signed_in?
+        .navbar-nav.nav-item.dropdown.d-flex
+          %a.nav-link.dropdown-toggle{ "data-bs-toggle" => "dropdown", href: "#", role: "button", "aria-haspopup" => "true", "aria-expanded" => "false"}= "#{current_user.name}"
           .dropdown-menu
-            %a.dropdown-item{ href: "#" } Action
-            %a.dropdown-item{ href: "#" } Another action
-            %a.dropdown-item{ href: "#" } Something else here
+            %a.dropdown-item{ href: "/users/#{current_user.id}" } Profile
+            -# %a.dropdown-item{ href: "#" } Another action
+            -# %a.dropdown-item{ href: "#" } Something else here
             .dropdown-divider
-            %a.dropdown-item{ href: "#" } Separated link
-      %form.d-flex
-        %input.form-control.me-sm-2{ type: "search", placeholder: "Search" }
-        %button.btn.btn-secondary.my-2.my-sm-0{ type: "submit" } Search
+            %a.dropdown-item{ href: destroy_user_session_path, "data-method" => "delete" } Sign out
+      - else
+        .navbar-nav.nav-item
+          %a.nav-link{ href: "/users/sign_in" } Sign In

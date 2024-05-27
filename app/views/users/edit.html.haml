@@ -1,0 +1,9 @@
+.row
+  .col-md-12
+    %h2.mb-4 Edit User
+
+    = render 'form', user: @user
+
+    .mt-4
+      = link_to 'Show', @user, class: 'btn btn-info'
+      = link_to 'Back', users_path, class: 'btn btn-secondary'
