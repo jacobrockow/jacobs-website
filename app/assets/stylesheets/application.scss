@@ -12,4 +12,14 @@
  *
  */
 
- @import "bootstrap";
+// // Import Bootstrap dependencies first
+// @import "bootstrap-sprockets";
+
+// Import Bootswatch variables for the Minty theme
+@import "bootswatch/dist/minty/variables";
+
+// Import Bootstrap main stylesheet
+@import "bootstrap";
+
+// Import Bootswatch theme specific styles
+@import "bootswatch/dist/minty/bootswatch";
